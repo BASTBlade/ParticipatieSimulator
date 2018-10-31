@@ -20,6 +20,7 @@
 
         <!-- Managers Objects -->
     <script src="managers/manager.class.js"></script>
+    <script src="managers/mainmanager.class.js"></script>
     <script src="managers/charactermanager.class.js"></script>
     <script src="managers/npcmanager.class.js"></script>
     <script src="managers/experiencemanager.class.js"></script>
@@ -36,9 +37,10 @@
 
     <script>
         var char = new Character("Joey",0);
-        var expmanager = new ExperienceManager();
-
-        expmanager.addExperience(char.experience, 300);
+        var manager = new MainManager();
+        console.log(manager);
+        manager.ExperienceManager.addExperience(char,200);
+        //expmanager.addExperience(char.experience, 300);
 
         console.log(char.experience);
         console.log(char);

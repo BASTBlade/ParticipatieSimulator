@@ -8,7 +8,7 @@ class ExperienceManager extends Manager{
     }
 
     addExperience(obj,exp){
-        obj._experience = obj._experience + exp;
+        obj.experience = obj.experience + exp;
         if(obj.experience > 20000){
             // Trigger something
         }
