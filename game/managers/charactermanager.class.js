@@ -1,0 +1,3 @@
+class CharacterManager extends Manager{
+    
+}

@@ -1,0 +1,3 @@
+class NPCManager extends CharacterManager{
+    
+}

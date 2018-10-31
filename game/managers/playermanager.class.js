@@ -1,0 +1,3 @@
+class PlayerManager extends Manager{
+
+}

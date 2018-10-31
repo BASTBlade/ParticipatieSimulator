@@ -1,0 +1,3 @@
+class TaskManager extends Manager{
+    
+}
