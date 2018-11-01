@@ -23,6 +23,9 @@ class Character extends Object{
 
     }
     moveRight(){
+
+    }
+    interact(){
         
     }
 }

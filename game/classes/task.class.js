@@ -56,13 +56,14 @@ class TaskType extends Object{
             var theMultiplier;
             if(self._types[type] != null){
                 theMultiplier = self._types[type];
-                return type,theMultiplier
+                return [type,theMultiplier];
             }
             else{
                 return new Error("INVALID_TYPE");
             }
         };
-        this._type,this._multiplier = validate(this,type);
+        this._type = validate(this,type)[0];
+        this._multiplier = validate(this,type)[1];
         
         
     }
