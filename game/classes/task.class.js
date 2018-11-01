@@ -81,14 +81,13 @@ class TaskType extends Object{
     }
 
 
-    getTypeFromString(type){
-        var theMultiplier;
+    isType(type){
         if(this.types[type] != null){
             theMultiplier = this.types[type];
-            return type,theMultiplier
+            return true;
         }
         else{
-            return new Error("INVALID_TYPE");
+            return false;
         }
     }
 }

@@ -28,6 +28,10 @@
     <script src="managers/participantmanager.class.js"></script>
     <script src="managers/taskmanager.class.js"></script>
 
+        <!-- Map Objects -->
+    <script src="maps/map.class.js"></script>
+    <script src="maps/tile.class.js"></script>
+
         
         <!-- END JS Objects -->
     <h1></h1>
@@ -36,14 +40,19 @@
   <!--<script src="main.js"></script>-->
 
     <script>
-        var char = new Character("Joey",0);
-        var manager = new MainManager();
-        console.log(manager);
-        manager.ExperienceManager.addExperience(char,200);
-        //expmanager.addExperience(char.experience, 300);
+      var xhttp = new XMLHttpRequest();
+      xhttp.onreadystatechange = function() {
+          if (this.readyState == 4 && this.status == 200) {
+          drawMap(this);
+          }
+      };
+      xhttp.open("GET", "maps/maps.xml", true);
+      xhttp.send();
 
-        console.log(char.experience);
-        console.log(char);
+      function myFunction(xml) {
+          var map = new Map(0,0,null);
+          map.draw(xml,"map1");
+      }
     </script>
 
   </body>
