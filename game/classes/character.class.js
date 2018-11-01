@@ -12,4 +12,17 @@ class Character extends Object{
     set name(newName){
         this._name = name;
     }
+
+    moveUp(){
+
+    }
+    moveDown(){
+
+    }
+    moveLeft(){
+
+    }
+    moveRight(){
+        
+    }
 }
