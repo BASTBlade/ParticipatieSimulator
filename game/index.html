@@ -6,7 +6,6 @@
     <link rel="stylesheet" href="style.css">
 
 
-
   </head>
 
   <body>
@@ -31,6 +30,7 @@
         <!-- Map Objects -->
     <script src="maps/map.class.js"></script>
     <script src="maps/tile.class.js"></script>
+    <script src="maps/mapmanager.class.js"></script>
 
         
         <!-- END JS Objects -->
@@ -40,19 +40,48 @@
   <!--<script src="main.js"></script>-->
 
     <script>
-      var xhttp = new XMLHttpRequest();
-      xhttp.onreadystatechange = function() {
-          if (this.readyState == 4 && this.status == 200) {
-          drawMap(this);
-          }
-      };
-      xhttp.open("GET", "maps/maps.xml", true);
-      xhttp.send();
+      var mapManager = new MapManager();
+      var con = new XMLHttpRequest();
+       
+      con.open("GET","maps/maps.xml");
+      con.setRequestHeader("Content-Type","text/xml");
+      con.send();
+      con.onload = handler;
 
-      function myFunction(xml) {
-          var map = new Map(0,0,null);
-          map.draw(xml,"map1");
+      function handler(){
+        if(this.status == 200 && this.responseXML != null &&this.responseXML) {
+          getObjects(this.responseXML);
+        } 
       }
+      function getObjects(xmlDoc){
+        for(var i = 0; i < xmlDoc.childNodes.length; i++){
+          var map = xmlDoc.childNodes[i];
+          var name,image,height,width;
+          if(map.getElementsByTagName("name")[0].textContent.toString() != null){
+            name = map.getElementsByTagName("name")[0].textContent.toString();
+          }
+          if(map.getElementsByTagName("background")[0].textContent.toString() != null){
+            image = map.getElementsByTagName("background")[0].textContent.toString();
+          }
+          if(map.getElementsByTagName("height")[0].textContent != null){
+            height = map.getElementsByTagName("height")[0].textContent;
+          }
+          if(map.getElementsByTagName("width")[0].textContent != null){
+            width = map.getElementsByTagName("width")[0].textContent;
+          }
+          if(map.getElementsByTagName("id")[0].textContent != null){
+            id = map.getElementsByTagName("id")[0].textContent;
+          }
+          
+          //var map = new Map(height,width,image);
+          mapManager.createMap(height,width,image,id);
+        }
+
+        
+          //var map = new Map(0,0,null);
+          //map.draw(nodes);
+      }
+      
     </script>
 
   </body>

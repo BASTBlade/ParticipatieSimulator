@@ -1,9 +1,18 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <maps>
-    <map id="map1">
+    <map>
+        <id>1</id>
         <name>Media Corantijn</name>
-        <height> 75vh </height> <!-- Height, is responsive to screen pixels. -->
-        <width> 75vw </width> <!-- Width, is responsive to screen pixels. -->
+        <height> 640 </height> <!-- Height, is responsive to screen pixels. -->
+        <width> 480 </width> <!-- Width, is responsive to screen pixels. -->
+        <background> </background> <!-- Image URL (as in CSS standards) -->
+        
+    </map>
+    <map>
+        <id>2</id>
+        <name>Media Corantijn</name>
+        <height> 680 </height> <!-- Height, is responsive to screen pixels. -->
+        <width> 480 </width> <!-- Width, is responsive to screen pixels. -->
         <background> </background> <!-- Image URL (as in CSS standards) -->
     </map>
 </maps>

@@ -4,6 +4,7 @@ class Map extends Object{
         this._height = height;
         this._width = width;
         this._image = image;
+        this._tiles;
     }
 
     get height(){
@@ -26,7 +27,18 @@ class Map extends Object{
     set image(newImage){
         this._image = newImage;
     }
-    draw(xml,id){
+
+    get tiles(){
+        return this._tiles;
+    }
+    set tiles(newTiles){
+        this._tiles = newTiles;
+    }
+
+    
+
+    // Values = array with all properties of an xml map node.
+    render(){
 
     }
 }
