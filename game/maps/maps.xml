@@ -3,16 +3,15 @@
     <map>
         <id>1</id>
         <name>Media Corantijn</name>
-        <height> 640 </height> <!-- Height, is responsive to screen pixels. -->
-        <width> 480 </width> <!-- Width, is responsive to screen pixels. -->
+        <rows> 10 </height> 
+        <cols> 10 </width>
         <background> </background> <!-- Image URL (as in CSS standards) -->
-        
     </map>
     <map>
         <id>2</id>
         <name>Media Corantijn</name>
-        <height> 680 </height> <!-- Height, is responsive to screen pixels. -->
-        <width> 480 </width> <!-- Width, is responsive to screen pixels. -->
+        <rows> 10 </height> <!-- Height, is responsive to screen pixels. -->
+        <cols> 10 </width> <!-- Width, is responsive to screen pixels. -->
         <background> </background> <!-- Image URL (as in CSS standards) -->
     </map>
 </maps>

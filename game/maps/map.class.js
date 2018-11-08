@@ -1,24 +1,26 @@
 class Map extends Object{
-    constructor(height,width,image){
+    constructor(id,rows,cols,image,coords){
         super();
-        this._height = height;
-        this._width = width;
+        this._rows = rows;
+        this._cols = cols;
         this._image = image;
+        this._id = id;
+        this._coords = coords;
         this._tiles;
     }
 
-    get height(){
-        return this._height;
+    get rows(){
+        return this._rows;
     }
-    set height(newHeight){
-        this._height = newHeight;
+    set rows(newrows){
+        this._rows = newrows;
     }
 
-    get width(){
-        return this._width;
+    get cols(){
+        return this._cols;
     }
-    set width(newWidth){
-        this._width = newWidth;
+    set cols(newcols){
+        this._cols = newcols;
     }
 
     get image(){
@@ -35,10 +37,18 @@ class Map extends Object{
         this._tiles = newTiles;
     }
 
-    
-
-    // Values = array with all properties of an xml map node.
-    render(){
-
+    get id(){
+        return this._id;
     }
+    set id(newId){
+        this._id = newId;
+    }
+    
+    get coords(){
+        return this._coords;
+    }
+    set coords(newCoords){
+        this._coords = newCoords;
+    }
+
 }

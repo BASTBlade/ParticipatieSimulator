@@ -4,11 +4,16 @@ class MapManager extends Manager{
         this._maps = [];
     }
 
-    createMap(height,width,image,id){
-        var map = new Map(id,height,width,image);
-        
+    createMap(rows,cols,image,id,coords){
+        var map = new Map(id,rows,cols,image,coords);
+        this.createTiles(map);
         this._maps[this._maps.length] = map;
     }
+
+    createTiles(map){
+
+    }
+
 
     getMap(id){
         var map = this._maps[id];

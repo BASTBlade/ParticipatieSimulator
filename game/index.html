@@ -56,25 +56,25 @@
       function getObjects(xmlDoc){
         for(var i = 0; i < xmlDoc.childNodes.length; i++){
           var map = xmlDoc.childNodes[i];
-          var name,image,height,width;
+          var name,image,rows,cols;
           if(map.getElementsByTagName("name")[0].textContent.toString() != null){
             name = map.getElementsByTagName("name")[0].textContent.toString();
           }
           if(map.getElementsByTagName("background")[0].textContent.toString() != null){
             image = map.getElementsByTagName("background")[0].textContent.toString();
           }
-          if(map.getElementsByTagName("height")[0].textContent != null){
-            height = map.getElementsByTagName("height")[0].textContent;
+          if(map.getElementsByTagName("rows")[0].textContent != null){
+            rows = map.getElementsByTagName("rows")[0].textContent;
           }
-          if(map.getElementsByTagName("width")[0].textContent != null){
-            width = map.getElementsByTagName("width")[0].textContent;
+          if(map.getElementsByTagName("cols")[0].textContent != null){
+            cols = map.getElementsByTagName("cols")[0].textContent;
           }
           if(map.getElementsByTagName("id")[0].textContent != null){
             id = map.getElementsByTagName("id")[0].textContent;
           }
           
           //var map = new Map(height,width,image);
-          mapManager.createMap(height,width,image,id);
+          mapManager.createMap(rows,cols,image,id);
         }
 
         

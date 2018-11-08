@@ -3,6 +3,8 @@ class Character extends Object{
         super();
         this._name = name;
         this.experience = new Experience(exp);
+        this._obj;
+        this.init();
     }
 
     get name(){
@@ -13,6 +15,9 @@ class Character extends Object{
         this._name = name;
     }
 
+    init(){
+
+    }
     moveUp(){
 
     }
