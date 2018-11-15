@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>Participatie Simulator Map-Creator</title>
+    <!--<link rel="stylesheet" href="style.css">-->
+    <script src="libs/jquery-3.3.1.min.js"></script>
+
+  </head>
+
+  <body>
+        <!-- JS Objects -->
+    <script src="classes/character.class.js"></script>
+    <script src="classes/npc.class.js"></script>
+    <script src="classes/experience.class.js"></script>
+    <script src="classes/player.class.js"></script>
+    <script src="classes/participant.class.js"></script>
+    <script src="classes/task.class.js"></script>
+
+        <!-- Managers Objects -->
+    <script src="managers/manager.class.js"></script>
+    <script src="managers/mainmanager.class.js"></script>
+    <script src="managers/charactermanager.class.js"></script>
+    <script src="managers/npcmanager.class.js"></script>
+    <script src="managers/experiencemanager.class.js"></script>
+    <script src="managers/playermanager.class.js"></script>
+    <script src="managers/participantmanager.class.js"></script>
+    <script src="managers/taskmanager.class.js"></script>
+
+        <!-- Map Objects -->
+    <script src="maps/map.class.js"></script>
+    <script src="maps/tile.class.js"></script>
+    <script src="maps/mapmanager.class.js"></script>
+
+    <script src="scripts/creator.js"></script>
+        
+        <!-- END JS Objects -->
+    <script>
+        $(document).ready(function(){
+            drawTable();
+            drawImagesList();
+        });
+
+    </script>
+    <p>
+        Select a Cell to edit this cell.
+    </p>
+    <div id="creator">
+
+    </div>
+
+    <p>
+        Select an image and add it onto the cell.
+    </p>
+    <div id="images">
+
+    </div>
+    <img src="" alt="" id="previewImage">
+
+  </body>
+</html>

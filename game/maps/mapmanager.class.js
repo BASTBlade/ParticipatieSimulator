@@ -18,8 +18,9 @@ class MapManager extends Manager{
     createTiles(map){
         for(var column = 0; column < map.cols;column++){
             for(var row = 0; row < map.rows; row++){
-                var random = Math.floor((Math.random() * 2) + 1);
-                var tile = new Tile(random,false);
+                var tile = new Tile(0,false);
+                var random = Math.floor((Math.random() * tile.images.length));
+                tile.image = tile.images[random];
                 if(map.tiles == null){
                     map.tiles = [];
                     map.tiles[0] = tile;
@@ -49,19 +50,33 @@ class MapManager extends Manager{
     }
 
     drawMap(map){
-        var canvas = document.getElementById("theCanvas").getContext("2d");
-        var col = 0;
-        var row = 0;
-        for(var tile = 0; tile < map.tiles.length; tile++){
-            //canvas.fillRect(col,row,50,50);
-            var img = document.getElementById(tile.image);
-            canvas.drawImage(img,col,row);
-            row++;
-            if(row >= 10){
-                col = col+1;
-                row = 0;
+        var images = [];
+        for(var image = 0; image < map.tiles[0].images.length;image++){
+            var img = new Image();
+            img.src = map.tiles[0].images[image];
+            images[image] = img;
+            images[image].onload = drawTile();
+        }
+
+        function drawTile(){
+            var canvas = document.getElementById("theCanvas").getContext("2d");
+            var col = 0;
+            var row = 0;
+            for(var tile = 0; tile < map.tiles.length; tile++){
+                var width = $("#theCanvas").width() / 10;
+                var height = $("#theCanvas").height() / 10;
+                //canvas.fillRect(col,row,50,50);
+                img.addEventListener('load', function() {
+                    canvas.drawImage(img,width * col,height * row);
+                    row++;
+                    if(row >= 10){
+                        col = col+1;
+                        row = 0;
+                    }
+                  }, false);
+                
+                //console.log(row);
             }
-            console.log(row);
         }
     }
 }
