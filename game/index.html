@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <title>blabla</title>
     <link rel="stylesheet" href="style.css">
-
+    <script src="libs/jquery-3.3.1.min.js"></script>
 
   </head>
 
@@ -35,8 +35,10 @@
         
         <!-- END JS Objects -->
     <h1></h1>
-    <canvas></canvas>
+    <canvas id="theCanvas" width="1024" height="768" style="border:1px solid #000000;"></canvas>
 
+    <img src="maps/tiles/tile_circle.png" id="tiles/tile_circle.png" style="display:none;">
+    <img src="maps/tiles/tile_strip.png" id="tiles/tile_circle.png" style="display:none;">
   <!--<script src="main.js"></script>-->
 
     <script>
@@ -52,6 +54,9 @@
         if(this.status == 200 && this.responseXML != null &&this.responseXML) {
           getObjects(this.responseXML);
         } 
+        else{
+          console.log("unable to get maps");
+        }
       }
       function getObjects(xmlDoc){
         for(var i = 0; i < xmlDoc.childNodes.length; i++){
@@ -75,6 +80,7 @@
           
           //var map = new Map(height,width,image);
           mapManager.createMap(rows,cols,image,id);
+          mapManager.drawMap(mapManager.maps[0]);
         }
 
         

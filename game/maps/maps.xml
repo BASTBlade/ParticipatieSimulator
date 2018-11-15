@@ -1,17 +1,17 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <maps>
-    <map>
+    <map id="1">
         <id>1</id>
         <name>Media Corantijn</name>
-        <rows> 10 </height> 
-        <cols> 10 </width>
+        <rows> 10 </rows> 
+        <cols> 10 </cols>
         <background> </background> <!-- Image URL (as in CSS standards) -->
     </map>
-    <map>
+    <map id="2">
         <id>2</id>
         <name>Media Corantijn</name>
-        <rows> 10 </height> <!-- Height, is responsive to screen pixels. -->
-        <cols> 10 </width> <!-- Width, is responsive to screen pixels. -->
+        <rows> 10 </rows> <!-- Height, is responsive to screen pixels. -->
+        <cols> 10 </cols> <!-- Width, is responsive to screen pixels. -->
         <background> </background> <!-- Image URL (as in CSS standards) -->
     </map>
 </maps>

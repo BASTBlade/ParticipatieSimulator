@@ -1,7 +1,11 @@
 class Tile extends Object{
     constructor(image,absolete){
         super();
-        this._image = image;
+        this.images = [
+            "tiles/tile_circle.png",
+            "tiles/tile_strip.png"
+        ]
+        this._image = this.images[image];
         this._absolete = absolete;
         this._col;
         this._row;
