@@ -1,4 +1,6 @@
 var currentCell;
+var cellWidth = "76px";
+var cellHeight = "76px";
 
 function drawTable(){
     var table = $("<table>").addClass("creator");
@@ -8,8 +10,8 @@ function drawTable(){
 
             var data = $("<td>").addClass("data " + k);
             data.css("border","1px solid black");
-            data.css("width","76px");
-            data.css("height", "76px");
+            data.css("width",cellWidth);
+            data.css("height", cellHeight);
             data.click(function(){
                 if(currentCell != null){
                     $(currentCell).css("background","none");
@@ -29,6 +31,8 @@ function drawImagesList(){
     var list = $("<select>").addClass("images");
     var dir = "maps/tiles/";
     var fileextension = ".png";
+    list.append($("<option>"));
+
     $.ajax({
         //This will retrieve the contents of the folder if the folder is configured as 'browsable'
         url: dir,
@@ -46,12 +50,21 @@ function drawImagesList(){
     });
     $("#images").append(list);
 
-    $('option').click(function(){  
-        lastOption = $(this);
-        var lastIsSelected = lastOption.is(':selected');
-        var lastText = lastOption.text();
-        $("#previewImage").attr("src","maps/tiles/"+ lastText);
-        alert(lastText);
+    $(".images").on("change",function(e){
+        var optionSelect = $("option:selected",this);
+        lastOption = this.value;
+        $("#previewImage").attr("src", dir + lastOption);
     });
 }
-
+function imageButtonClicked(){
+    if(currentCell.find('img').length){
+        currentCell.find('img').attr("src","maps/tiles/" + lastOption);
+    }
+    else{
+        var img = $("<img>");
+        img.attr("src","maps/tiles/" + lastOption);
+        img.css("height",cellHeight);
+        img.css("width",cellWidth);
+        currentCell.append(img);
+    }
+}
