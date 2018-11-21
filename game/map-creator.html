@@ -3,9 +3,10 @@
   <head>
     <meta charset="utf-8">
     <title>Participatie Simulator Map-Creator</title>
-    <!--<link rel="stylesheet" href="style.css">-->
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="libs/bootstrap.min.css">
     <script src="libs/jquery-3.3.1.min.js"></script>
-
+    <script src="libs/bootstrap.js"></script>
   </head>
 
   <body>
@@ -53,9 +54,12 @@
         Select an image and add it onto the cell.
     </p>
     <div id="images">
+        <input type="file" id="file" name="file" />
+        <button id="upload" onclick="uploadFile();">Upload Image</button>
             
         <img src="" alt="" id="previewImage">
-        <button type="button" onclick="imageButtonClicked();">Set</button>
+        <button id="addImageButton" onclick="imageButtonClicked();">Set</button>
+
     </div>
 
   </body>
