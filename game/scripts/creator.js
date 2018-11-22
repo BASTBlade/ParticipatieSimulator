@@ -1,9 +1,12 @@
 var currentCell;
 var cellWidth = "76px";
 var cellHeight = "76px";
-
+// ---------------------------------------- CTRL Key press with array.
 function drawTable(){
     var table = $("<table>").addClass("creator");
+    //table.css("border","1px solid black");
+    table.css("height", cellHeight * 10);
+    table.css("width", cellWidth * 10);
     for(var i = 1; i <= 10; i++){
         var row = $("<tr>").addClass("row " + i);
         for(var k = 1; k <= 10; k++){
@@ -14,7 +17,9 @@ function drawTable(){
             data.css("height", cellHeight);
             data.click(function(){
                 if(currentCell != null){
-                    $(currentCell).css("background","none");
+                    if(currentCell.css("background-image") == 'none'){
+                        $(currentCell).css("background","none");
+                    }
                 }
                 currentCell = $(this);
                 $(this).css("background","orange");
@@ -29,6 +34,7 @@ function drawTable(){
 var lastOption;
 function drawImagesList(){
     var list = $("<select>").addClass("images");
+    list.addClass("dropdown-menu");
     var dir = "maps/tiles/";
     var fileextension = ".png";
     list.append($("<option>"));
@@ -41,6 +47,7 @@ function drawImagesList(){
             $(data).find("a:contains(" + fileextension + ")").each(function () {
                 var filename = this.href.replace(window.location.host, "").replace("http://", "").replace("/game/","");
                 var item = $("<option>").addClass(filename);
+                item.addClass("dropdown-item");
                 item.text(filename);
                 list.append(item);
                 
@@ -54,10 +61,15 @@ function drawImagesList(){
         var optionSelect = $("option:selected",this);
         lastOption = this.value;
         $("#previewImage").attr("src", dir + lastOption);
+        $("#previewImage").css("width", cellWidth);
+        $("#previewImage").css("height", cellHeight);
+        
     });
 }
 function imageButtonClicked(){
-    if(currentCell.find('img').length){
+    var img = "url('maps/tiles/" + lastOption + "')";
+    currentCell.css("background-image",img);
+   /* if(currentCell.find('img').length){
         currentCell.find('img').attr("src","maps/tiles/" + lastOption);
     }
     else{
@@ -66,7 +78,7 @@ function imageButtonClicked(){
         img.css("height",cellHeight);
         img.css("width",cellWidth);
         currentCell.append(img);
-    }
+    }*/
 }
 
 function uploadFile(e){
@@ -93,3 +105,12 @@ function uploadFile(e){
       alert('Input something!');
     }
 }
+var ctrlPressed = false
+$(document).keydown(function(e){
+    if(e.ctrlKey){
+        ctrlPressed = true;
+    }
+});
+$(document).keyup(function(e){
+    ctrlPressed = false;
+});
