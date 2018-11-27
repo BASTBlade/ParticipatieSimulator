@@ -1,6 +1,7 @@
 var currentCell;
 var cellWidth = "76px";
 var cellHeight = "76px";
+var cells = [];
 // ---------------------------------------- CTRL Key press with array.
 function drawTable(){
     var table = $("<table>").addClass("creator");
@@ -15,7 +16,7 @@ function drawTable(){
             data.css("border","1px solid black");
             data.css("width",cellWidth);
             data.css("height", cellHeight);
-            data.click(function(){
+            /*data.click(function(){
                 if(currentCell != null){
                     if(currentCell.css("background-image") == 'none'){
                         $(currentCell).css("background","none");
@@ -23,12 +24,58 @@ function drawTable(){
                 }
                 currentCell = $(this);
                 $(this).css("background","orange");
-            })
+            })*/
+            data.click(handleCellClick);
             row.append(data);
         }
         table.append(row);
     }    
     $("#creator").append(table);
+}
+
+function handleCellClick(){
+    if(ctrlPressed){
+        console.log(isObjectInArray(cells,$(this)));
+        if(isObjectInArray(cells,$(this)) != -1){
+            $(this).css("background","none");
+            removeEntryFromArray(cells,$(this));
+        }else{
+            cells.push($(this));
+            $(this).css("background","orange");
+        }
+    }
+    else{
+        resetArray();
+        cells.push($(this));
+        $(this).css("background","orange");
+    }
+}
+function removeEntryFromArray(array,object){
+    for(var i = 0; i < array.length; i++) {
+        if($(object).is(array[i])) {
+            array.splice(i, 1);
+            break;
+        }
+    }
+}
+function isObjectInArray(array,object){
+    for(var i = 0; i < array.length; i++) {
+        if($(object).is(array[i])) {
+            return i;
+        }
+    }
+    return -1;
+}
+
+function resetArray(array){
+    cells.forEach(
+        function(obj){
+            if(obj.css("background-image") == 'none'){
+                obj.css("background","none");
+            }
+        }
+    );
+    cells = [];
 }
 
 var lastOption;
@@ -67,18 +114,13 @@ function drawImagesList(){
     });
 }
 function imageButtonClicked(){
-    var img = "url('maps/tiles/" + lastOption + "')";
-    currentCell.css("background-image",img);
-   /* if(currentCell.find('img').length){
-        currentCell.find('img').attr("src","maps/tiles/" + lastOption);
-    }
-    else{
-        var img = $("<img>");
-        img.attr("src","maps/tiles/" + lastOption);
-        img.css("height",cellHeight);
-        img.css("width",cellWidth);
-        currentCell.append(img);
-    }*/
+    cells.forEach(
+        function(cell){
+            cell.css("background","none");
+            var img = "url('maps/tiles/" + lastOption + "')";
+            cell.css("background-image",img);
+        }
+    )
 }
 
 function uploadFile(e){
