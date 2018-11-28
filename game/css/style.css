@@ -49,3 +49,7 @@ a{
 .creator>td{
     display: block;
 }
+
+.warning{
+    color:red;
+}

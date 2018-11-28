@@ -9,10 +9,9 @@ function drawTable(){
     table.css("height", cellHeight * 10);
     table.css("width", cellWidth * 10);
     for(var i = 1; i <= 10; i++){
-        var row = $("<tr>").addClass("row " + i);
+        var row = $("<tr>").addClass("column " + i);
         for(var k = 1; k <= 10; k++){
-
-            var data = $("<td>").addClass("data " + k);
+            var data = $("<td>").addClass("data " + i + " "+ k);
             data.css("border","1px solid black");
             data.css("width",cellWidth);
             data.css("height", cellHeight);
@@ -35,7 +34,6 @@ function drawTable(){
 
 function handleCellClick(){
     if(ctrlPressed){
-        console.log(isObjectInArray(cells,$(this)));
         if(isObjectInArray(cells,$(this)) != -1){
             $(this).css("background","none");
             removeEntryFromArray(cells,$(this));
@@ -156,3 +154,20 @@ $(document).keydown(function(e){
 $(document).keyup(function(e){
     ctrlPressed = false;
 });
+
+function setStartTile(){
+    if(cells.length == 1){
+        cells.forEach(
+            function(cell){
+                cell.addClass("start");
+            }
+        );
+    }
+    else{
+        $(".warning").text("test");
+    }
+}
+
+function saveMap(){
+
+}
