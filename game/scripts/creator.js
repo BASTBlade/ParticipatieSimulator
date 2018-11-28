@@ -164,8 +164,13 @@ function setStartTile(){
         );
     }
     else{
-        $(".warning").text("test");
+        $(".warningtext").text(messages.CREATOR_WARNING_START);
+        $(".warning").toggle("fade");
     }
+}
+
+function toggleWarning(obj){
+    $(obj).toggle("fade");
 }
 
 function saveMap(){

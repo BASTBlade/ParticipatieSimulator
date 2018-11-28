@@ -4,9 +4,13 @@
     <meta charset="utf-8">
     <title>Participatie Simulator Map-Creator</title>
     <link rel="stylesheet" href="libs/bootstrap.min.css">
+    <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.min.css">
+    <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.structure.min.css">
+    <link rel="stylesheet" href="libs/jquery-ui/jquery-ui.theme.min.css">
     <script src="libs/jquery-3.3.1.min.js"></script>
     <link rel="stylesheet" href="css/style.css">
     <script src="libs/bootstrap.js"></script>
+    <script src="libs/jquery-ui/jquery-ui.min.js"></script>
   </head>
 
   <body>
@@ -34,6 +38,7 @@
     <script src="maps/mapmanager.class.js"></script>
 
     <script src="scripts/creator.js"></script>
+    <script src="scripts/messages.js"></script>
         
         <!-- END JS Objects -->
     <nav class="navbar">
@@ -50,6 +55,15 @@
 
         </script>
         
+        <div class="ui-widget warning" style="display:none;" onclick="toggleWarning(this);">
+                <div class="ui-state-error ui-corner-all" style="padding: 0 .7em;"> 
+                    <p>
+                        <span class="ui-icon ui-icon-alert" 
+                        style="float: left; margin-right: .3em;"></span>
+                        <span class="warningtext"></span>
+                    </p>
+                </div>
+            </div>
         <div id="tiles">
             <div id="images">
                 <div class="block">
@@ -75,7 +89,6 @@
             <p>
                 Select a Cell to edit this cell.
             </p>
-            <p class="warning"></p>
         </div>
     </div>
   </body>
