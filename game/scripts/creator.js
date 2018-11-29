@@ -2,7 +2,6 @@ var currentCell;
 var cellWidth = "76px";
 var cellHeight = "76px";
 var cells = [];
-// ---------------------------------------- CTRL Key press with array.
 function drawTable(){
     var table = $("<table>").addClass("creator");
     //table.css("border","1px solid black");
@@ -15,15 +14,6 @@ function drawTable(){
             data.css("border","1px solid black");
             data.css("width",cellWidth);
             data.css("height", cellHeight);
-            /*data.click(function(){
-                if(currentCell != null){
-                    if(currentCell.css("background-image") == 'none'){
-                        $(currentCell).css("background","none");
-                    }
-                }
-                currentCell = $(this);
-                $(this).css("background","orange");
-            })*/
             data.click(handleCellClick);
             row.append(data);
         }

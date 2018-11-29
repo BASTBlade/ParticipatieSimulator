@@ -1,42 +1,19 @@
 <!DOCTYPE html>
+<?php include("php/functions.php")?>
 <html>
   <head>
+    <?php 
+        includeHeader();
+        includeAllJavascriptFiles();
+    ?>
     <meta charset="utf-8">
-    <title>blabla</title>
-    <link rel="stylesheet" href="style.css">
-    <script src="libs/jquery-3.3.1.min.js"></script>
-
+    <title>Log-in</title>
   </head>
 
   <body>
-        <!-- JS Objects -->
-    <script src="classes/character.class.js"></script>
-    <script src="classes/npc.class.js"></script>
-    <script src="classes/experience.class.js"></script>
-    <script src="classes/player.class.js"></script>
-    <script src="classes/participant.class.js"></script>
-    <script src="classes/task.class.js"></script>
-
-        <!-- Managers Objects -->
-    <script src="managers/manager.class.js"></script>
-    <script src="managers/mainmanager.class.js"></script>
-    <script src="managers/charactermanager.class.js"></script>
-    <script src="managers/npcmanager.class.js"></script>
-    <script src="managers/experiencemanager.class.js"></script>
-    <script src="managers/playermanager.class.js"></script>
-    <script src="managers/participantmanager.class.js"></script>
-    <script src="managers/taskmanager.class.js"></script>
-
-        <!-- Map Objects -->
-    <script src="maps/map.class.js"></script>
-    <script src="maps/tile.class.js"></script>
-    <script src="maps/mapmanager.class.js"></script>
-
-        
-        <!-- END JS Objects -->
-    <h1></h1>
-    <canvas id="theCanvas" width="1024" height="768" style="border:1px solid #000000;"></canvas>
-
+      <?php showNavBar(); ?>
+    <div id="pageContent">
+    </div>
   <!--<script src="main.js"></script>-->
 
     <script>
