@@ -52,7 +52,30 @@
             <a class="navbar-brand" href="<?php echo $path;?>index.html">Participatie Simulator</a>
             <a class="link" href="<?php echo $path;?>">Home</a>
             <a class="link" href="<?php echo $path;?>map-creator.php">Map Creator</a>
-            <a class="link" href="<?php echo $path;?>php/login.php">Login</a>
+
+            <span style="float:right;">
+                <?php 
+                if(isset($_POST["logout"])){
+                    logout();
+                }
+                if(isset($_SESSION["loggedin"])){?>
+                    Logged in as: <?php echo $_SESSION["loggedin"]["username"];
+                    ?>
+                    <form action="<?php echo $_SERVER['PHP_SELF']; ?>" method="post" name="logoutForm" style="float:right;">
+                        <input type="submit" name="logout" value="Log Out" class="btn btn-danger" >
+                    </form>
+                    <?php
+                }
+                else{
+                    ?> 
+                    <a class="link" href="<?php echo $path;?>php/login.php">Login</a><?php
+                }
+
+                if(!isset($_SESSION["loggedin"]) && isset($_COOKIE["loggedin"])){
+                    $_SESSION["loggedin"] = json_decode($_COOKIE["loggedin"]);
+                }
+                ?>
+            </span>
         </nav>
         <?php
     }
@@ -60,13 +83,25 @@
     function getRequirements(){
         @include_once("php/mysql.php");
         @include_once("../php/mysql.php");
+        
+        session_start();
     }
 
-    function login(){
-
+    function login($account,$remember){
+        if($remember){
+            setcookie("loggedin",json_encode($account));
+        }
+        $_SESSION["loggedin"] = $account;
     }
     function logout(){
-
+        if(isset($_SESSION["loggedin"])){
+            unset($_SESSION["loggedin"]);
+            $_SESSION["loggedin"] = null;
+        }
+        if(isset($_COOKIE["loggedin"])){
+            unset($_COOKE["loggedin"]);
+            setcookie("loggedin",'',time() - 3600);
+        }
     }
 
 

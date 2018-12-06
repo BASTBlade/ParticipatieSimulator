@@ -20,6 +20,9 @@
 
             if(!$warning){
                 $mysql->registerAccount($username,$email,$password);
+
+                header("Location: login.php");
+                die();
             }
         }
     }
@@ -32,7 +35,7 @@
             includeAllJavascriptFiles();
         ?>
         <meta charset="utf-8">
-        <title>Register</title>
+        <title>Register new Account</title>
     </head>
     <body>
     <?php showNavBar(); ?>

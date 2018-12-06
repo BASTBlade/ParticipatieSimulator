@@ -5,6 +5,7 @@
     <?php 
         includeHeader();
         includeAllJavascriptFiles();
+        getRequirements();
     ?>
     <meta charset="utf-8">
     <title>Log-in</title>

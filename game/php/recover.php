@@ -8,7 +8,12 @@
             $key = $_POST["key"];
             $password = $_POST["key"];
             if($password == $_POST["passwordConfirm"]){
+                if($id = $mysql->checkRecoveryKey($key)){
+                    $mysql->changePasswordWithRecovery($id,$password,$key);
 
+                    header("Location: recover.php");
+                    die();
+                }
             }
             else{
                 $warning = "Passwords do not match.";
@@ -23,7 +28,7 @@
         includeAllJavascriptFiles();
     ?>
     <meta charset="utf-8">
-    <title>Recover</title>
+    <title>Account Recovery</title>
   </head>
 
   <body>

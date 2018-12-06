@@ -7,8 +7,8 @@
         if(isset($_POST["username"]) && isset($_POST["password"])){
             $username = $_POST["username"];
             $password = $_POST["password"];
-            if($mysql->login($username,$password)){
-
+            if($mysql->login($username,$password,isset($_POST["remember"]))){
+                
                 header("Location: ../");
                 die();
             }
@@ -43,6 +43,11 @@
                 <label for="password">Password: </label>
                 <input name="password" type="password" class="form-control" id="password" aria-describedby="password" placeholder="password" required>
                 <small id="passwordHelp" class="form-text text-muted"></small>
+            </div>
+            <div class="form-group">
+                <label for="remember">Stay Loggedin: </label>
+                <input type="checkbox" name="remember" id="remember" aria-describedby="remember">
+
             </div>
             <a href="register.php" class="form-text text-muted" style="float:right;"> Register</a><br><br>
             <a href="recoveraccount.php" class="form-text text-muted" style="float:right;"> Recover Account</a>

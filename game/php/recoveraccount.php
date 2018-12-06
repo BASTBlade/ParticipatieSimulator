@@ -12,7 +12,11 @@
                 $data = $mysql->getDataFromId($exists);
                 if($data["email"] == $email){
                     $recoverykey = random_str(32);
+                    $mysql->setRecoveryKey($data["id"],$recoverykey);
                     sendRecoveryMail($email,$username,$recoverykey);
+                    
+                    header("Location: ../");
+                    die();
                 }
                 else{
                     $warning = "This combination is not valid.";
@@ -31,7 +35,7 @@
         includeAllJavascriptFiles();
     ?>
     <meta charset="utf-8">
-    <title>Recover</title>
+    <title>Account recovery</title>
   </head>
 
   <body>

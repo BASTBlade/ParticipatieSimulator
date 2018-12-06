@@ -72,7 +72,7 @@
             }
         }
 
-        public function login($username,$password){
+        public function login($username,$password,$remember){
             $hash = "PartSim2019";
             $cryptedpw = crypt($password,$hash);
             
@@ -84,6 +84,8 @@
                 $exec->fetch();
                 $this->getConnection()->close();
                 if($id != null){
+                    $data = array("id" => $id,"username"=>$username,"email"=>$email);
+                    login($data,$remember);
                     return true;
                 }
                 else{
@@ -110,5 +112,70 @@
                 }
             }
         }
+
+        public function checkRecoveryKey($key){
+            $conn = $this->getConnection();
+            if($exec = $conn->prepare("SELECT user_id FROM password_recovery WHERE recovery_key = ?")){
+                $exec->bind_param("s",$key);
+                $exec->execute();
+                $exec->bind_result($id);
+                $exec->fetch();
+                $this->getConnection()->close();
+                if($id != null){
+                    return $id;
+                }
+                else{
+                    return false;
+                }
+            }
+
+        }
+        public function changePasswordWithRecovery($id,$password,$key){
+            $conn = $this->getConnection();
+            if($exec = $conn->prepare("DELETE FROM password_recovery WHERE recovery_key = ? AND user_id = ?")){
+                $exec->bind_param("ss",$key,$id);
+                $exec->execute();
+            }
+            if($exec2 = $conn->prepare("UPDATE user_data SET password= ? WHERE id = ?")){
+                $hash = "PartSim2019";
+                $cryptedpw = crypt($password,$hash);
+
+                $exec2->bind_param("ss",$cryptedpw,$id);
+                $exec2->execute();
+
+                return true;
+            }
+        }
+
+        public function isAccountRecoverable($id){
+            $conn = $this->getConnection();
+            if($exec = $conn->prepare("SELECT user_id FROM password_recovery WHERE user_id = ?")){
+                $exec->bind_param("s",$id);
+                $exec->execute();
+                $exec->bind_result($id);
+                $exec->fetch();
+                $this->getConnection()->close();
+                if($id != null){
+                    return false;
+                }
+                else{
+                    return true;
+                }
+            }
+        }
+
+
+        public function setRecoveryKey($id,$key){
+            echo $key;
+            if($this->isAccountRecoverable($id)){
+                $conn = $this->getConnection();
+                if($exec = $conn->prepare("INSERT INTO password_recovery(user_id,recovery_key) VALUES(?,?)")){
+                    $exec->bind_param("ss",$id,$key);
+                    $exec->execute();
+                    $this->getConnection()->close();
+                }
+            }
+        }
+
     }
 ?>
