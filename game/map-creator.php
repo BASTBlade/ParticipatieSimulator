@@ -5,6 +5,7 @@
     <?php 
         includeHeader();
         includeAllJavascriptFiles();
+        getRequireMents();
     ?>
     <meta charset="utf-8">
     <title>Participatie Simulator Map-Creator</title>

@@ -60,3 +60,7 @@ a{
     border: 1px solid rgba(117, 117, 117, 0.658);
     padding: 4vh 4vw 4vh 4vw;
 }
+
+.warning{
+    color:red;
+}

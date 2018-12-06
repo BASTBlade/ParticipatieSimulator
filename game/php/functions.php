@@ -1,4 +1,5 @@
 <?php
+
     function includeHeader(){
         $path = "http://localhost/game/";
     ?>
@@ -56,12 +57,47 @@
         <?php
     }
 
+    function getRequirements(){
+        @include_once("php/mysql.php");
+        @include_once("../php/mysql.php");
+    }
+
     function login(){
 
     }
     function logout(){
 
     }
-    
 
+
+    function sendRecoveryMail($email,$username,$key){
+        $to = $email;
+        $subject = "Password Recovery Request";
+        $message = "
+            <html>
+                <body>
+                    url: test.com/php/recover.php
+                    key: ". $key . "
+                    username: " . $username . "
+                </body>
+            </html>
+        ";
+        $headers = "MIME-Version: 1.0" . "\r\n";
+        $headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+        
+        $headers .= 'From: <admin@participatiesimulator.nl>' . "\r\n";
+        mail($to,$subject,$message,$headers);
+
+    }
+
+    
+    function random_str($length, $keyspace = '0123456789abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ')
+    {
+        $pieces = [];
+        $max = mb_strlen($keyspace, '8bit') - 1;
+        for ($i = 0; $i < $length; ++$i) {
+            $pieces []= $keyspace[random_int(0, $max)];
+        }
+        return implode('', $pieces);
+    }
 ?>
