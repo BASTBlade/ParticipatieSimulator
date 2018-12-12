@@ -1,2 +1,2 @@
 # Files not to be uploaded to git.
-game/php/mysql.php
+game/php/secret.php

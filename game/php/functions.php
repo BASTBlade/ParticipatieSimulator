@@ -81,6 +81,9 @@
     }
 
     function getRequirements(){
+        @include_once("php/secret.php");
+        @include_once("../php/secret.php");
+
         @include_once("php/mysql.php");
         @include_once("../php/mysql.php");
         
