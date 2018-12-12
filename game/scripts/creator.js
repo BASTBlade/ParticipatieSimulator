@@ -176,6 +176,7 @@ function saveMap(){
     var confirmed = confirm(messages.CONFIRM_SAVE);
     if(confirmed){
         var tiles = [];
+        var map = [];
         $(".row").each(function(index){
             $(this).find('td').each(function(){
                 var tile = {
@@ -187,10 +188,12 @@ function saveMap(){
                 tiles.push(tile);
             });
         });
+        map["mapname"] = $("#mapName").text();
+        map["tiles"] = tiles;
         $.ajax({
             url: "php/saveMap.php",
             type: "POST",
-            data: {myData:tiles},
+            data: map,
             success: function(data){
                 alert(data);
             }

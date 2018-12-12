@@ -16,6 +16,7 @@ CREATE TABLE password_recovery(
 CREATE TABLE maps(
     id INT(6) AUTO_INCREMENT PRIMARY KEY,
     creator_id INT(6) NOT NULL,
+    name VARCHAR(255) NOT NULL,
     FOREIGN KEY(creator_id) REFERENCES user_data(id)
 );
 

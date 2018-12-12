@@ -176,5 +176,14 @@
                 }
             }
         }
+
+        function saveMapToDatabase($map){
+            
+        }
+        function saveTileToDatabase($map_id,$tile){
+
+        }
+
+
     }
 ?>

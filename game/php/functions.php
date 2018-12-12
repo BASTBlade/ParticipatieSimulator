@@ -45,6 +45,18 @@
         <?php
     }
 
+    function isLoggedin(){
+        if(isset($_SESSION["loggedin"])){
+            return true;
+        }
+        elseif(isset($_COOKIE["loggedin"])){
+            return true;
+        }
+        else{
+            return false;
+        }
+    }
+
     function showNavBar(){
         $path = "http://localhost/game/";
         ?>

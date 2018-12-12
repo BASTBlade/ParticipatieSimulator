@@ -1,11 +1,19 @@
 <!DOCTYPE html>
-<?php include("php/functions.php")?>
+<?php include("php/functions.php");
+
+
+?>
 <html>
   <head>
     <?php 
         includeHeader();
         includeAllJavascriptFiles();
         getRequireMents();
+
+        
+        if(!isLoggedin()){
+            header("Location: index.php");
+        }
     ?>
     <meta charset="utf-8">
     <title>Participatie Simulator Map-Creator</title>
@@ -57,8 +65,15 @@
                 Select a Cell to edit this cell.
             </p>
         </div>
-
+            
+        <div class="spacer"> - </div>
         <div id="management">
+            <form>
+                <div class="form-group">
+                    <label for="mapName">Map Name: </label>
+                    <input type="text" class="form-control" name="mapName" id="mapName"/>
+                </div>
+            </form>
             <button class="btn-danger btn" id="saveButton" onclick="clearMap()">Clear Map </button>
             <button class="btn-danger btn" id="saveButton" onclick="saveMap()">Save Map </button>
         </div>
