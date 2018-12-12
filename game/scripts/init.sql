@@ -12,3 +12,19 @@ CREATE TABLE password_recovery(
     recovery_key VARCHAR(255),
     FOREIGN KEY (user_id) REFERENCES user_data(id)
 )
+
+CREATE TABLE maps(
+    id INT(6) AUTO_INCREMENT PRIMARY KEY,
+    creator_id INT(6) NOT NULL,
+    FOREIGN KEY(creator_id) REFERENCES user_data(id)
+);
+
+CREATE TABLE tiles(
+    id INT(6) AUTO_INCREMENT PRIMARY KEY,
+    map_id INT(6) NOT NULL,
+    starttile INT(2) NOT NULL,
+    background VARCHAR(255),
+    maprow INT(6) NOT NULL,
+    position INT(6) NOT NULL,
+    FOREIGN KEY(map_id) REFERENCES maps(id)
+);

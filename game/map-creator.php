@@ -57,6 +57,11 @@
                 Select a Cell to edit this cell.
             </p>
         </div>
+
+        <div id="management">
+            <button class="btn-danger btn" id="saveButton" onclick="clearMap()">Clear Map </button>
+            <button class="btn-danger btn" id="saveButton" onclick="saveMap()">Save Map </button>
+        </div>
     </div>
   </body>
 </html>

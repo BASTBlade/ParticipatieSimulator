@@ -1,16 +1,16 @@
 var currentCell;
-var cellWidth = "76px";
-var cellHeight = "76px";
+var cellWidth = "38px";
+var cellHeight = "38px";
 var cells = [];
 function drawTable(){
     var table = $("<table>").addClass("creator");
     //table.css("border","1px solid black");
     table.css("height", cellHeight * 10);
     table.css("width", cellWidth * 10);
-    for(var i = 1; i <= 10; i++){
-        var row = $("<tr>").addClass("column " + i);
-        for(var k = 1; k <= 10; k++){
-            var data = $("<td>").addClass("data " + i + " "+ k);
+    for(var i = 1; i <= 20; i++){
+        var row = $("<tr>").addClass("row " + i);
+        for(var k = 1; k <= 20; k++){
+            var data = $("<td>").addClass("data " + k);
             data.css("border","1px solid black");
             data.css("width",cellWidth);
             data.css("height", cellHeight);
@@ -129,10 +129,10 @@ function uploadFile(e){
           }
         });
       }else{
-        alert('Not a valid image!');
+        alert(messages.INVALID_IMAGE);
       }
     }else{
-      alert('Input something!');
+      alert(messages.NO_INPUT);
     }
 }
 var ctrlPressed = false
@@ -159,10 +159,51 @@ function setStartTile(){
     }
 }
 
+function isStartTile(tile){
+    if(tile.hasClass("start")){
+        return 1;
+    }
+    else{
+        return 0;
+    }
+}
+
 function toggleWarning(obj){
     $(obj).toggle("fade");
 }
 
 function saveMap(){
+    var confirmed = confirm(messages.CONFIRM_SAVE);
+    if(confirmed){
+        var tiles = [];
+        $(".row").each(function(index){
+            $(this).find('td').each(function(){
+                var tile = {
+                    ["starttile"] : isStartTile($(this)),
+                    ["background"] : $(this).css("background"),
+                    ["maprow"] : index,
+                    ["position"] : $(this).attr("class").replace('data','')
+                };
+                tiles.push(tile);
+            });
+        });
+        $.ajax({
+            url: "php/saveMap.php",
+            type: "POST",
+            data: {myData:tiles},
+            success: function(data){
+                alert(data);
+            }
+        });
 
+
+    }
+}
+function clearMap(){
+    var confirmed = confirm(messages.CONFIRM_RESET);
+    if(confirmed){
+        cells = []
+        $(".creator").remove();
+        drawTable();
+    }
 }

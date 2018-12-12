@@ -30,6 +30,7 @@ a{
 }
 .block{
     display: block;
+    float: left;
 }
 #previewImage{
     border: 1px solid black;
