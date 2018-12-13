@@ -176,26 +176,26 @@ function saveMap(){
     var confirmed = confirm(messages.CONFIRM_SAVE);
     if(confirmed){
         var tiles = [];
-        var map = [];
+        var map = {};
         $(".row").each(function(index){
             $(this).find('td').each(function(){
                 var tile = {
                     ["starttile"] : isStartTile($(this)),
-                    ["background"] : $(this).css("background"),
+                    ["background"] : $(this).css("background-image"),
                     ["maprow"] : index,
                     ["position"] : $(this).attr("class").replace('data','')
                 };
                 tiles.push(tile);
             });
         });
-        map["mapname"] = $("#mapName").text();
         map["tiles"] = tiles;
+        map["name"] = $("#mapName").val();
         $.ajax({
             url: "php/saveMap.php",
             type: "POST",
-            data: map,
+            data: {myData:JSON.stringify(map)},
             success: function(data){
-                alert(data);
+                console.log(data);
             }
         });
 

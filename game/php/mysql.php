@@ -166,7 +166,6 @@
 
 
         public function setRecoveryKey($id,$key){
-            echo $key;
             if($this->isAccountRecoverable($id)){
                 $conn = $this->getConnection();
                 if($exec = $conn->prepare("INSERT INTO password_recovery(user_id,recovery_key) VALUES(?,?)")){
@@ -177,13 +176,42 @@
             }
         }
 
-        function saveMapToDatabase($map){
-            
+        function saveMapToDatabase($mapname,$tiles){
+            if($mapname != null && $tiles != null){
+                $conn = $this->getConnection();
+                if($exec = $conn->prepare("INSERT INTO maps(name,creator_id) VALUES (?,?)")){
+                    $exec->bind_param("ss",$mapname,$_SESSION["loggedin"]["id"]);
+                    if($exec->execute()){
+                        $lastid = $exec->insert_id;
+                        $this->getConnection()->close();
+                        foreach($tiles as $tile){
+                            $this->saveTileToDatabase($lastid,$tile);
+                        }
+                        return "Query Done";
+                    }
+                    else{
+                        $this->getConnection()->close();
+                        return "Query Failed";
+                    }
+                }
+                else{
+                    return "Can't perform query";
+                }
+            }
+            else{
+                return "No data given";
+            }
         }
         function saveTileToDatabase($map_id,$tile){
-
+            if($map_id != null && $tile != null){
+                $conn = $this->getConnection();
+                if($exec = $conn->prepare("INSERT INTO tiles(map_id,starttile,background,maprow,position) VALUES (?,?,?,?,?)")){
+                    $exec->bind_param("iisii",$map_id,$tile["starttile"],$tile["background"],$tile["maprow"],$tile["position"]);
+                    if($exec->execute()){
+                        $this->getConnection()->close();
+                    }
+                }
+            }
         }
-
-
     }
 ?>

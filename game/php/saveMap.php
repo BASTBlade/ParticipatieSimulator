@@ -1,11 +1,12 @@
 <?php
-if(isset($_POST["map"])){
-    var_dump($_POST["map"]["mapName"]);
-    $tiles = $_POST["map"][0];
-    echo $_POST["map"][1];
-    foreach($tiles as $tile){
-        
-    }
+include_once("mysql.php");
+$mysql = new MySql();
+session_start();
+
+if(isset($_POST["myData"])){
+    $data = json_decode($_POST["myData"], true);
+    $mapname = $data["name"];
+    echo $mysql->saveMapToDatabase($mapname,$data["tiles"]);
 }
 
 ?>
