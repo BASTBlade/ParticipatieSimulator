@@ -213,5 +213,43 @@
                 }
             }
         }
+        function getMap($id){
+            $conn = $this->getConnection();
+            $map = array();
+            $map["id"] = $id;
+            if($exec = $conn->prepare("SELECT name,creator_id FROM maps WHERE id = ?")){
+                $exec->bind_param("i",$id);
+                $exec->execute();
+                $exec->bind_result($name,$creator_id);
+                $exec->fetch();
+                $this->getConnection()->close();
+                $map["name"] = $name;
+                $map["creator_id"] = $creator_id;
+                if($map["name"] != null && $map["creator_id"] != null){
+                    $conn = $this->getConnection();
+                        if($exec2 = $conn->prepare("SELECT id,map_id,starttile,background,maprow,position FROM tiles WHERE map_id = ?")){
+                            $exec2->bind_param("i",$id);
+                            $exec2->execute();
+                            $result = $exec2->get_result();
+                            $counter = 0;
+                            while($row = $result->fetch_assoc()){
+                                $map[$counter] = array(
+                                    "tile_id" => $row["id"],
+                                    "map_id" => $row["map_id"],
+                                    "starttile" => $row["starttile"],
+                                    "background" => $row["background"],
+                                    "maprow" => $row["maprow"],
+                                    "position" => $row["position"]
+                                );
+                                $counter++;
+
+                            }
+                            $exec2->close();
+                        }
+
+                }
+            }
+            $this->getConnection()->close();
+        }
     }
 ?>
