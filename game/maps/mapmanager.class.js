@@ -4,39 +4,21 @@ class MapManager extends Manager{
         this._maps = [];
     }
 
-    createMap(rows,cols,image,id){
-        var coords = {
-            ["start"] : Math.round(cols * rows - (cols / 2)),
-            ["end"] : Math.round(rows / 2)
-        }
-        var map = new Map(id,rows,cols,image,coords);
-        this.createTiles(map);
-        this._maps[this._maps.length] = map;
-        console.log();
-    }
 
-    createTiles(map){
-        for(var column = 0; column < map.cols;column++){
-            for(var row = 0; row < map.rows; row++){
-                var tile = new Tile(0,false);
-                var random = Math.floor((Math.random() * tile.images.length));
-                tile.image = tile.images[random];
-                if(map.tiles == null){
-                    map.tiles = [];
-                    map.tiles[0] = tile;
-                }
-                else{
-                    map.tiles[map.tiles.length] = tile;
-                }
-            }
+    createMap(mapId,mapName,creatorId,tiles){
+        this._maps[this._maps.length + 1] = new Map(mapId,mapName,creatorId,this.createTiles(tiles));
+    }
+    createTiles(tiles){
+        var allTiles = [];
+        for(var tile = 0; tile < tiles.length; tile++){
+            allTiles[allTiles.length + 1] = new Tile(false,tiles[tile]["tile_id"],tiles[tile]["map_id"],tiles[tile]["starttile"],tiles[tile]["background"],tiles[tile]["maprow"],tiles[tile]["position"]);
+            
         }
+        return allTiles;
     }
 
     get maps(){
         return this._maps;
-    }
-    set maps(newMaps){
-        this._maps = newMaps;
     }
 
     getMap(id){

@@ -107,6 +107,8 @@ function imageButtonClicked(){
             cell.css("background","none");
             var img = "url('maps/tiles/" + lastOption + "')";
             cell.css("background-image",img);
+            
+            resetArray();
         }
     )
 }
@@ -181,7 +183,7 @@ function saveMap(){
             $(this).find('td').each(function(){
                 var tile = {
                     ["starttile"] : isStartTile($(this)),
-                    ["background"] : $(this).css("background-image"),
+                    ["background"] : $(this).css("background-image").replace(`"`,`'`),
                     ["maprow"] : index,
                     ["position"] : $(this).attr("class").replace('data','')
                 };

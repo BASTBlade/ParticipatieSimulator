@@ -16,16 +16,19 @@
     
         
     $mysql = new MySql();
-    $mysql->getMap(3);
+    $data = $mysql->getMap(4);
     ?>
     <div id="pageContent">
         
     </div>
   <!--<script src="main.js"></script>-->
+    <script>
+        var mapmanager = new MapManager();
+        console.log(<?php echo $data["id"]; ?>,"<?php echo $data["name"]; ?>","<?php echo $data["creator_id"]; ?>", <?php echo json_encode($data["tiles"]); ?>);
+        mapmanager.createMap(<?php echo $data["id"]; ?>,"<?php echo $data["name"]; ?>","<?php echo $data["creator_id"]; ?>", <?php echo json_encode($data["tiles"]); ?>);
 
-<script>
-      
-</script>
+        console.log(mapmanager.maps);
+    </script>
 
     </body>
 </html>

@@ -1,33 +1,11 @@
 class Map extends Object{
-    constructor(id,rows,cols,image,coords){
+    constructor(id,name,creatorId,tiles){
         super();
-        this._rows = rows;
-        this._cols = cols;
-        this._image = image;
-        this._id = id;
-        this._coords = coords;
-        this._tiles;
-    }
 
-    get rows(){
-        return this._rows;
-    }
-    set rows(newrows){
-        this._rows = newrows;
-    }
-
-    get cols(){
-        return this._cols;
-    }
-    set cols(newcols){
-        this._cols = newcols;
-    }
-
-    get image(){
-        return this._image;
-    }
-    set image(newImage){
-        this._image = newImage;
+        this._tiles = tiles;
+        this._name = name;
+        this._creatorId = creatorId;
+        this._id = id
     }
 
     get tiles(){
@@ -43,12 +21,18 @@ class Map extends Object{
     set id(newId){
         this._id = newId;
     }
-    
-    get coords(){
-        return this._coords;
+
+    get name(){
+        return this._name;
     }
-    set coords(newCoords){
-        this._coords = newCoords;
+    set name(newName){
+        this._name = newName;
     }
 
+    get creatorId(){
+        return this._creatorId;
+    }
+    set creatorId(newCreatorId){
+        this._creatorId = newCreatorId;
+    }
 }

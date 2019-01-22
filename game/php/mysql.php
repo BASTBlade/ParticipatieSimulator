@@ -233,7 +233,7 @@
                             $result = $exec2->get_result();
                             $counter = 0;
                             while($row = $result->fetch_assoc()){
-                                $map[$counter] = array(
+                                $map["tiles"][$counter] = array(
                                     "tile_id" => $row["id"],
                                     "map_id" => $row["map_id"],
                                     "starttile" => $row["starttile"],
@@ -245,6 +245,7 @@
 
                             }
                             $exec2->close();
+                            return $map;
                         }
 
                 }

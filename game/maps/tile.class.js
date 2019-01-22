@@ -1,5 +1,5 @@
 class Tile extends Object{
-    constructor(image,absolete){
+    constructor(absolete,id,map_id,starttile,background,maprow,position){
         super();
         //this.images = [
         //    "maps/tiles/tile_circle.png",
@@ -7,18 +7,20 @@ class Tile extends Object{
         //    "maps/tiles/tile_green.png",
         //    "maps/tiles/tile_blue.png",
         //]
-        this._image = image
+        this._background = background
         this._absolete = absolete;
-        this._col;
-        this._row;
-        this._x;
+        this._id = id;
+        this._map_id = map_id;
+        this._starttile = starttile;
+        this._maprow = maprow;
+        this._position = position;
     }
 
-    get image(){
-        return this._image;
+    get background(){
+        return this._background;
     }
-    set image(newImage){
-        this._image = newImage;
+    set background(newbackground){
+        this._background = newbackground;
     }
 
     get absolete(){
@@ -28,24 +30,38 @@ class Tile extends Object{
         this._absolete = a;
     }
 
-    get col(){
-        return this._col;
+    get id(){
+        return this._id;
     }
-    set col(newCol){
-        this._col = newCol;
-    }
-
-    get row(){
-        return this._row;
-    }
-    set row(newRow){
-        this._row = newRow;
+    set id(newId){
+        this._id = newId;
     }
 
-    get x(){
-        return this._x;
+    get map_id(){
+        return this._map_id;
     }
-    set x(newX){
-        this._x = newX;
+    set map_id(newMapId){
+        this._map_id = newMapId;
+    }
+
+    get starttile(){
+        return this._starttile;
+    }
+    set starttile(newStartTile){
+        this._starttile = newStartTile;
+    }
+
+    get maprow(){
+        return this._maprow;
+    }
+    set maprow(newMapRow){
+        this._maprow = newMapRow;
+    }
+
+    get position(){
+        return this._position;
+    }
+    set position(newPosition){
+        this._position = newPosition;
     }
 }
