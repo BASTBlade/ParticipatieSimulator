@@ -6,7 +6,10 @@ class MapManager extends Manager{
 
 
     createMap(mapId,mapName,creatorId,tiles){
-        this._maps[this._maps.length + 1] = new Map(mapId,mapName,creatorId,this.createTiles(tiles));
+        var map = new Map(mapId,mapName,creatorId,this.createTiles(tiles));
+        
+        this._maps[this._maps.length + 1] = map;
+        return map;
     }
     createTiles(tiles){
         var allTiles = [];
@@ -31,7 +34,39 @@ class MapManager extends Manager{
         }
     }
 
+
     drawMap(map){
+        var cellWidth = "38px";
+        var cellHeight = "38px";
+        var cells = [];
+
+        var table = $("<table>").addClass("gameScene");
+        table.css("border","1px solid black");
+        table.css("height", cellHeight * 10);
+        table.css("width", cellWidth * 10);
+        var counter = 1;
+        var row = $("<tr>");
+        map.tiles.forEach(function(obj){
+            if(counter > 20){
+                counter = 1;
+                table.append(row);
+                row = $("<tr>");
+            }
+            var data = $("<td>").addClass(obj.tile_id);
+            data.css("background",obj.background);
+            data.css("height",cellHeight);
+            data.css("width",cellWidth);
+            if(obj.starttile == 0){
+                data.addClass("starttile");
+            }
+            row.append(data);
+            counter++;
+        });
+        table.append(row);
+
+        $(".game").append(table);
+    }
+    /*drawMap(map){
         var images = [];
         for(var image = 0; image < map.tiles[0].images.length;image++){
             var img = new Image();
@@ -60,5 +95,6 @@ class MapManager extends Manager{
                 //console.log(row);
             }
         }
-    }
+    }*/
+
 }

@@ -16,18 +16,17 @@
     
         
     $mysql = new MySql();
-    $data = $mysql->getMap(4);
+    $data = $mysql->getMap(6);
     ?>
     <div id="pageContent">
-        
+        <div class="game">
+        </div>
     </div>
   <!--<script src="main.js"></script>-->
     <script>
         var mapmanager = new MapManager();
-        console.log(<?php echo $data["id"]; ?>,"<?php echo $data["name"]; ?>","<?php echo $data["creator_id"]; ?>", <?php echo json_encode($data["tiles"]); ?>);
-        mapmanager.createMap(<?php echo $data["id"]; ?>,"<?php echo $data["name"]; ?>","<?php echo $data["creator_id"]; ?>", <?php echo json_encode($data["tiles"]); ?>);
-
-        console.log(mapmanager.maps);
+        var map = mapmanager.createMap(<?php echo $data["id"]; ?>,"<?php echo $data["name"]; ?>","<?php echo $data["creator_id"]; ?>", <?php echo json_encode($data["tiles"]); ?>);
+        mapmanager.drawMap(map);
     </script>
 
     </body>

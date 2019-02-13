@@ -183,7 +183,7 @@ function saveMap(){
             $(this).find('td').each(function(){
                 var tile = {
                     ["starttile"] : isStartTile($(this)),
-                    ["background"] : $(this).css("background-image").replace(`"`,`'`),
+                    ["background"] : $(this).css("background-image").replace(/\"/g,`'`),
                     ["maprow"] : index,
                     ["position"] : $(this).attr("class").replace('data','')
                 };
