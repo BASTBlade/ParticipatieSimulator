@@ -1,3 +1,0 @@
-class ParticipantManager extends NPCManager{
-    
-}
