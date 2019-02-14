@@ -10,25 +10,16 @@
 * obtained from JvE Games .
 ******************************************************************************/
 
-global.core = {};
+module.exports = async() => {
+  console.log('[Requirements] Loading requirements...');
 
-class Core{
-  constructor(){
-    this.load();
+  try{
+    //Load requirements.
+
+
+    console.log('[Requirements] Succesfully loaded requirements.');
   }
-
-  async load(){
-    console.log('[CORE] Loading core...');
-
-    await require('./Load/requirements.js');
-
-    await require('./Load/classes.js');
-
-    //global.core.managers = require('./Managers');
-
-    console.log('[CORE] Succesfully initialized!');
-
+  catch(err){
+    console.log(`[Requirements] ERROR: ${err.message}`);
   }
-}
-
-new Core;
+};

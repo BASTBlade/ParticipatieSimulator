@@ -9,26 +9,13 @@
 * of this material is strictly forbidden unless prior written permission is
 * obtained from JvE Games .
 ******************************************************************************/
+module.exports = async() => {
+  console.log('[Classes] Loading classes...');
 
-global.core = {};
-
-class Core{
-  constructor(){
-    this.load();
+  try{
+    //Load classes/objects
   }
-
-  async load(){
-    console.log('[CORE] Loading core...');
-
-    await require('./Load/requirements.js');
-
-    await require('./Load/classes.js');
-
-    //global.core.managers = require('./Managers');
-
-    console.log('[CORE] Succesfully initialized!');
-
+  catch(err){
+    console.log(`[Classes] ERROR: ${err.message}`);
   }
-}
-
-new Core;
+};
